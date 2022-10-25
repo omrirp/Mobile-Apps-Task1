@@ -12,20 +12,23 @@ $(Document).ready(() => {
     }
 
     $('#ingredientFrm').hide().submit(submitIngredient);
+    $('#recipeFrm').hide();
 
     $('#addIngredient').click(addIngredientCLick);
     $('#showIngredients').click(showingredients);
+    $('#addRecipe').click(addRecipeClick);
 });
 
 function addIngredientCLick() {
     $('#action').html('Add Ingredient');
     $('#ingredientFrm').show();
+    $('#recipeFrm').hide();
     $('#ph').html('');
 }
 
 function submitIngredient() {
     const name = $('#ingredientName').val();
-    const imageUrl = $('#imageUrl').val();
+    const imageUrl = $('#ingredientImageUrl').val();
     const calories = $('#ingredientCalories').val();
     const id = JSON.parse(localStorage.getItem('idCounter'));
 
@@ -42,6 +45,7 @@ function submitIngredient() {
 
 function showingredients() {
     $('#ingredientFrm').hide();
+    $('#recipeFrm').hide();
     $('#action').html('Ingredients');
 
     let ings = JSON.parse(localStorage.getItem('ingredients'));
@@ -58,4 +62,13 @@ function showingredients() {
     for (let i = 0; i < ingredients.length; i++) {
         ph.append(ingredients[i].render());
     }
+}
+
+function addRecipeClick() {
+    $('#ingredientFrm').hide();
+    showingredients();
+    $('#action').html('Create Recipe');
+    $('#recipeFrm').show();
+
+    let ingredients = [];
 }
