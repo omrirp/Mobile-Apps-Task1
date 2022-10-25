@@ -14,11 +14,13 @@ $(Document).ready(() => {
     $('#ingredientFrm').hide().submit(submitIngredient);
 
     $('#addIngredient').click(addIngredientCLick);
+    $('#showIngredients').click(showingredients);
 });
 
 function addIngredientCLick() {
     $('#action').html('Add Ingredient');
     $('#ingredientFrm').show();
+    $('#ph').html('');
 }
 
 function submitIngredient() {
@@ -38,17 +40,22 @@ function submitIngredient() {
     return false;
 }
 
-class Ingredient {
-    constructor(id, name, imageUrl, calories) {
-        this.id = id;
-        this.name = name;
-        this.imageUrl = imageUrl;
-        this.calories = calories;
+function showingredients() {
+    $('#ingredientFrm').hide();
+    $('#action').html('Ingredients');
+
+    let ings = JSON.parse(localStorage.getItem('ingredients'));
+    if (!ings) {
+        return $('#ph').html('No ingredients added!');
     }
 
-    render() {}
+    let ingredients = [];
+    for (let i = 0; i < ings.length; i++) {
+        ingredients.push(new Ingredient(ings[i].id, ings[i].name, ings[i].imageUrl, ings[i].calories));
+    }
 
-    toJson() {
-        return { id: this.id, name: this.name, imageUrl: this.imageUrl, calories: this.calories };
+    let ph = $('#ph').html('');
+    for (let i = 0; i < ingredients.length; i++) {
+        ph.append(ingredients[i].render());
     }
 }

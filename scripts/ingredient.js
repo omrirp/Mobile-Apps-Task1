@@ -6,9 +6,21 @@ class Ingredient {
         this.calories = calories;
     }
 
-    render() {}
-
-    toJson() {
-        return { id: this.id, name: this.name, imageUrl: this.imageUrl, calories: this.calories };
-    }
+    render = function () {
+        let card = document.createElement('div');
+        card.setAttribute('class', 'card');
+        let img = document.createElement('img');
+        img.setAttribute('src', this.imageUrl);
+        card.appendChild(img);
+        let div = document.createElement('div');
+        div.setAttribute('class', 'container');
+        let h4 = document.createElement('h4');
+        h4.innerHTML = this.name;
+        div.appendChild(h4);
+        let p = document.createElement('p');
+        p.innerHTML = this.calories + 'Calories';
+        div.appendChild(p);
+        card.appendChild(div);
+        return card;
+    };
 }
