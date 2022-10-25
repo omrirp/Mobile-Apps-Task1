@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <link rel="stylesheet" href="css/index.css" />
+        <!-- <script src="scripts/ingredient.js"></script> -->
+        <script src="scripts/index.js"></script>
+    </head>
+    <body>
+        <div class="containet">
+            <!--Page header-->
+            <div class="row">
+                <div class="col">
+                    <h1>Cooking App!</h1>
+                </div>
+            </div>
+            <!--Page header-->
+
+            <!--menu-->
+            <div class="row" id="menu">
+                <div class="col-12 col-md-3">
+                    <button id="addIngredient">Add Ingrediant</button>
+                </div>
+                <div class="col-12 col-md-3">
+                    <button id="addRecipe">Add Recipe</button>
+                </div>
+                <div class="col-12 col-md-3">
+                    <button id="showIngredients">Show Ingredients</button>
+                </div>
+                <div class="col-12 col-md-3">
+                    <button id="showRecipes">Show Recipes</button>
+                </div>
+            </div>
+            <!--menu-->
+            <hr />
+
+            <div id="forms">
+                <h2 id="action"></h2>
+                <div class="row">
+                    <div class="col">
+                        <!--ingredient form-->
+                        <form action="" id="ingredientFrm">
+                            <table>
+                                <tr>
+                                    <td>Name:</td>
+                                    <td><input type="text" id="ingredientName" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Image URL</td>
+                                    <td><input type="text" id="imageUrl" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Calories</td>
+                                    <td><input type="number" id="ingredientCalories" /></td>
+                                </tr>
+                            </table>
+                            <button>Submit</button>
+                        </form>
+                        <!--ingredient form-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
