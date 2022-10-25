@@ -9,6 +9,7 @@ class Ingredient {
     render = function () {
         let card = document.createElement('div');
         card.setAttribute('class', 'card');
+        card.setAttribute('data', this.id);
         let img = document.createElement('img');
         img.setAttribute('src', this.imageUrl);
         card.appendChild(img);

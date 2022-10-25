@@ -69,6 +69,44 @@ function addRecipeClick() {
     showingredients();
     $('#action').html('Create Recipe');
     $('#recipeFrm').show();
+    localStorage.setItem('recipeIngredients', JSON.stringify({}));
 
-    let ingredients = [];
+    let cards = document.getElementsByClassName('card');
+
+    for (let index = 0; index < cards.length; index++) {
+        cards[index].setAttribute('onclick', 'addToRecipe(' + cards[index].getAttribute('data') + ')');
+    }
+}
+
+function addToRecipe(id) {
+    let recipeIngredients = JSON.parse(localStorage.getItem('recipeIngredients'));
+    let allIngredients = JSON.parse(localStorage.getItem('ingredients'));
+    if (!recipeIngredients) {
+        recipeIngredients = {};
+        localStorage.setItem('recipeIngredients', JSON.stringify(recipeIngredients));
+    }
+
+    let ing = allIngredients.find((i) => i.id === id);
+
+    if (!recipeIngredients[ing.id]) {
+        recipeIngredients[ing.id] = 1;
+    } else {
+        recipeIngredients[ing.id]++;
+    }
+    localStorage.setItem('recipeIngredients', JSON.stringify(recipeIngredients));
+    renderIngredients();
+}
+
+function renderIngredients() {
+    let recipeIngredients = JSON.parse(localStorage.getItem('recipeIngredients'));
+    let allIngredients = JSON.parse(localStorage.getItem('ingredients'));
+    let list = '';
+
+    for (const id in recipeIngredients) {
+        let ing = allIngredients.find((i) => i.id == id);
+        let s = ing.name + ' x ' + recipeIngredients[id] + '\n';
+        list += s;
+    }
+
+    $('#ingList').html(list);
 }
