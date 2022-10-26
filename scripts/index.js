@@ -1,22 +1,29 @@
 $(Document).ready(() => {
-    // Init idCounter or load
+    // Init idCounter if necessary
     if (!localStorage.getItem('idCounter')) {
-        idCounter = 1;
+        let idCounter = 1;
         localStorage.setItem('idCounter', JSON.stringify(idCounter));
     }
 
-    // Init ingredients array or load
+    // Init ingredients array if necessary
     if (!localStorage.getItem('ingredients')) {
-        ingredients = [];
+        let ingredients = [];
         localStorage.setItem('ingredients', JSON.stringify(ingredients));
     }
 
+    // Init recipes array if necessary
+    if (!localStorage.getItem('recipes')) {
+        let recipes = [];
+        localStorage.setItem('recipes', JSON.stringify(recipes));
+    }
+
     $('#ingredientFrm').hide().submit(submitIngredient);
-    $('#recipeFrm').hide();
+    $('#recipeFrm').hide().submit(submitRecipe);
 
     $('#addIngredient').click(addIngredientCLick);
     $('#showIngredients').click(showingredients);
     $('#addRecipe').click(addRecipeClick);
+    $('#showRecipes').click(showrecipes);
 });
 
 function addIngredientCLick() {
@@ -109,4 +116,37 @@ function renderIngredients() {
     }
 
     $('#ingList').html(list);
+}
+
+function submitRecipe() {
+    let name = $('#recipeName').val();
+    let ingredients = JSON.parse(localStorage.getItem('recipeIngredients'));
+    let time = $('#time').val();
+    let imageUrl = $('#recipeImageUrl').val();
+    let cookingMethod = $('#cookingMethod').val();
+
+    let rec = new DishRecipe(name, ingredients, time, cookingMethod, imageUrl);
+    let recipes = JSON.parse(localStorage.getItem('recipes'));
+    recipes.push(rec);
+    localStorage.setItem('recipes', JSON.stringify(recipes));
+
+    return false;
+}
+
+function showrecipes() {
+    $('#ingredientFrm').hide();
+    $('#recipeFrm').hide();
+    $('#action').html('Recipes');
+    $('#ph').html('');
+
+    let recs = JSON.parse(localStorage.getItem('recipes'));
+    let recipes = [];
+    for (let i = 0; i < recs.length; i++) {
+        recipes.push(new DishRecipe(recs[i].name, recs[i].ingredients, recs[i].time, recs[i].cookingMethod, recs[i].imageUrl));
+    }
+
+    let ph = $('#ph').html('');
+    for (let i = 0; i < recipes.length; i++) {
+        ph.append(recipes[i].render());
+    }
 }

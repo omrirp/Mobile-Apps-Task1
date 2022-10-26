@@ -15,12 +15,15 @@ class Ingredient {
         card.appendChild(img);
         let div = document.createElement('div');
         div.setAttribute('class', 'container');
+
         let h4 = document.createElement('h4');
         h4.innerHTML = this.name;
         div.appendChild(h4);
+
         let p = document.createElement('p');
         p.innerHTML = this.calories + 'Calories';
         div.appendChild(p);
+
         card.appendChild(div);
         return card;
     };
