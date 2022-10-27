@@ -1,4 +1,9 @@
 class DishRecipe {
+    // Note ! --- this.ingredients ---
+    // The ingredients field of this class is an object that:
+    // its key represent the ingredient id and the value represent the quantity
+    // {key: value} => {ingredient id: quantity}
+
     constructor(name, ingredients, time, cookingMethod, imageUrl) {
         this.name = name;
         this.ingredients = ingredients;
@@ -7,11 +12,7 @@ class DishRecipe {
         this.imageUrl = imageUrl;
     }
 
-    // Note ! --- this.ingredients ---
-    // The ingredients field of this class is an object that:
-    // its key represent the ingredient id and the value represent the quantity
-    // {key: value} => {ingredient id: quantity}
-
+    // This method returns a bootstrap "card" HTML element of the DishRecipe instance
     render = function () {
         let card = document.createElement('div');
         card.setAttribute('class', 'card');
@@ -46,6 +47,8 @@ class DishRecipe {
         return card;
     };
 
+    // This method takes the ingredients object ({"ingredient id":"quantity"})
+    // and and returns a string format of: ingredient1 x n ingredient2 x n ...
     ingredientsToString() {
         let allIngredients = JSON.parse(localStorage.getItem('ingredients'));
         let ingredientStr = '';
@@ -60,6 +63,8 @@ class DishRecipe {
         return ingredientStr;
     }
 
+    // This method takes the ingredients object ({"ingredient id":"quantity"})
+    // and returns a number that represent the total calories of the dish instance
     calcCalories() {
         let allIngredients = JSON.parse(localStorage.getItem('ingredients'));
         let ingKeys = Object.keys(this.ingredients);

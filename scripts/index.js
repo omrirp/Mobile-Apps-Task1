@@ -17,15 +17,18 @@ $(Document).ready(() => {
         localStorage.setItem('recipes', JSON.stringify(recipes));
     }
 
+    // Hide forms
     $('#ingredientFrm').hide().submit(submitIngredient);
     $('#recipeFrm').hide().submit(submitRecipe);
 
+    // Set events
     $('#addIngredient').click(addIngredientCLick);
     $('#showIngredients').click(showingredients);
     $('#addRecipe').click(addRecipeClick);
     $('#showRecipes').click(showrecipes);
 });
 
+// Add ingridient click event
 function addIngredientCLick() {
     $('#action').html('Add Ingredient');
     $('#ingredientFrm').show();
@@ -33,6 +36,7 @@ function addIngredientCLick() {
     $('#ph').html('');
 }
 
+// Submit ingridient form event
 function submitIngredient() {
     const name = $('#ingredientName').val();
     const imageUrl = $('#ingredientImageUrl').val();
@@ -50,6 +54,7 @@ function submitIngredient() {
     return false;
 }
 
+// Show ingridients click event
 function showingredients() {
     $('#ingredientFrm').hide();
     $('#recipeFrm').hide();
@@ -71,6 +76,7 @@ function showingredients() {
     }
 }
 
+// Add recipe click event
 function addRecipeClick() {
     $('#ingredientFrm').hide();
     showingredients();
@@ -85,6 +91,7 @@ function addRecipeClick() {
     }
 }
 
+// Add ingredient to recipe method
 function addToRecipe(id) {
     let recipeIngredients = JSON.parse(localStorage.getItem('recipeIngredients'));
     let allIngredients = JSON.parse(localStorage.getItem('ingredients'));
@@ -104,6 +111,7 @@ function addToRecipe(id) {
     renderIngredients();
 }
 
+// Support function for rendering the added ingredients to recipe
 function renderIngredients() {
     let recipeIngredients = JSON.parse(localStorage.getItem('recipeIngredients'));
     let allIngredients = JSON.parse(localStorage.getItem('ingredients'));
@@ -118,6 +126,7 @@ function renderIngredients() {
     $('#ingList').html(list);
 }
 
+// Submit recipe form event
 function submitRecipe() {
     let name = $('#recipeName').val();
     let ingredients = JSON.parse(localStorage.getItem('recipeIngredients'));
@@ -133,6 +142,7 @@ function submitRecipe() {
     return false;
 }
 
+// Show recipes click event
 function showrecipes() {
     $('#ingredientFrm').hide();
     $('#recipeFrm').hide();

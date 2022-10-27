@@ -6,6 +6,7 @@ class Ingredient {
         this.calories = calories;
     }
 
+    // This method returns a bootstrap "card" HTML element of the Ingredient instance
     render = function () {
         let card = document.createElement('div');
         card.setAttribute('class', 'card');
